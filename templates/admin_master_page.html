@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block pagetitle %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='use.fontawesome.com/releases/v5.6.3/css/all.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+        <style>
+            {% block stylingsection %}{% endblock %}
+        </style>
+    </head>
+
+    <body class="fixed-sn black-skin">
+        <div class="container-fluid" style="margin-top: 70px;">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <b style="font-weight: 500px; font-size: 26px;">{{ message }}</b>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <header>
+            <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+                <div class="float-left">
+                    <a href="/" style="margin-left: 30px;">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
+                <div class="breadcrumb-dn mr-auto">
+                    <p>FERRET-ISMS - What a Ferret Would Say, If a Ferret Could Talk</p>
+                </div>
+                <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                    <li class="nav-item">
+                        <a href="/admin_dashboard" class="nav-link">
+                            <i class="fa fa-dashboard"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Admin Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span class="clearfix d-none d-sm-inline-block">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container-fluid pb-5">
+                {% block bodycontent %}{% endblock %}
+            </div>
+        </main>
+
+        <footer class="page-footer text-md-left ">
+            <div class="footer-copyright py-3 text-center">
+                <div class="container-fluid">
+                    © 2019 Copyright: <span style="font-weight: bold; font-size: 16px;"> FerretShop </span>
+                </div>
+            </div>
+        </footer>
+
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+
+        <script>
+            $(".button-collapse").sideNav();
+            new WOW().init();
+        </script>
+        {% block javascriptsection %}{% endblock %}
+
+    </body>
+
+</html>

@@ -1,0 +1,156 @@
+{% extends 'master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Home{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <div class="container">
+        <div class="col-md-12">
+            <div class="alert alert-dark" style="text-align: center;">
+                <b style="font-weight: 500px; font-size: 36px;">Are you looking to help a ferret? You are at the right place! Not many shelters always have the space to host a ferret thus leaving many without a home. If you have the space and time, please consider fostering a ferret, especially those that are being surrendered in fewer days. Thank you.</b>
+            </div>
+            <h3>Ferret Available to Foster</h3>
+        </div>
+        <div class="row">
+            {% for d in data %}
+                {% set testing = loop.index %}
+                <div class="col-md-4" style="padding: 10px;">
+                    <div class="card">
+                        <div class="view overlay">
+                            <div class="card card-cascade">
+                                <div class="view view-cascade">
+                                    <div id="carousel-example-1z{{testing}}" class="carousel slide carousel-fade" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            {% for dd in d.images %}
+                                                <li data-target="#carousel-example-1z{{testing}}" data-slide-to="{{loop.index}}" {% if loop.index == 1 %} class="active" {% endif %}></li>
+                                            {% endfor %}
+                                        </ol>
+                                        <div class="carousel-inner" role="listbox">
+                                            {% for dd in d.images %}
+                                                <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                                    <img class="d-block w-100" style="height: 200px !important;" src="{{ url_for('static', filename='img/uploads/' + dd )}}">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carousel-example-1z{{testing}}" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel-example-1z{{testing}}" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body" id="{{ d.ferret_owner_name }}">
+                            <h6 class="card-title"><b>Ferret Name : {{ d.ferret_name }}</b></h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="card-text"><b>Age (years):</b> {{ d.age }}</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="card-text"><b>Category :</b> {{ d.ferret_category }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text"><b>Gender :</b> {{ d.gender }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text"><b>Health Status :</b> {{ d.health_knowledge }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="card-text"><b>Email :</b> {{ d.email }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="card-text"><b>About Ferret :</b> {{ d.about }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% for d in data1 %}
+                {% set testing1 = loop.index %}
+                <div class="col-md-4" style="padding: 10px;">
+                    <div class="card">
+                        <div class="view overlay">
+
+                            <div class="card card-cascade">
+                                <div class="view view-cascade">
+                                    <div id="carousel-example-1z{{testing1}}" class="carousel slide carousel-fade" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            {% for dd in d.images %}
+                                                <li data-target="#carousel-example-1z{{testing1}}" data-slide-to="{{loop.index}}" {% if loop.index == 1 %} class="active" {% endif %}></li>
+                                            {% endfor %}
+                                        </ol>
+                                        <div class="carousel-inner" role="listbox">
+                                            {% for dd in d.images %}
+                                                <div class="carousel-item {% if loop.index == 1 %} active {% endif %}">
+                                                    <img class="d-block w-100" style="height: 200px !important;" src="{{ url_for('static', filename='img/uploads/' + dd )}}">
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carousel-example-1z{{testing1}}" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel-example-1z{{testing1}}" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body" id="{{ d.shelter_ferret_name }}">
+                            <h6 class="card-title"><b>Ferret Name : {{ d.ferret_name }}</b></h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="card-text"><b>Age (in years):</b> {{ d.age }}</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="card-text"><b>Category :</b> {{ d.ferret_category }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text"><b>Gender :</b> {{ d.gender }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="card-text"><b>Health Status :</b> {{ d.health_knowledge }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="card-text"><b>Email :</b> {{ d.email }}</p>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="card-text"><b>About Ferret :</b> {{ d.about }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}
+    <script>
+		$(document).ready(function() {
+	        $('.card-body').click(function(event) {
+	            // alert('The id of card body is here : ' + this.id);
+				window.open('foster_detail?v='+this.id,'_self');
+			});
+		});
+	</script>
+{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

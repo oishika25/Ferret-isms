@@ -1,0 +1,172 @@
+{% extends 'master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Ferret up for adoption{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <div class="col-md-12">
+        <div class="alert alert-dark" style="text-align: center;">
+            <b style="font-weight: 500px; font-size: 36px;">Dear Fur Parent - We understand that  due to unforseen circumstances you are unable to continue caring for your ferret. We are here to help you re-home your ferret without the stress of going through multiple stops of shelters. Please post your ferret(s) available for adoption and we will share this information with anyone who is willing to adopt or foster that ferret. Thank you.</b>
+        </div>
+    </div>
+    <h3>Add Ferret Up For Adoption</h3>
+    <form action="/surrendering_ferret" method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+
+        {{ form.ferret_name(class="form-control") }}
+        <ul>
+            {% for error in form.ferret_name.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.ferret_category(class="form-control") }}
+        <ul>
+            {% for error in form.ferret_category.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">{{ form.bonded.label }}</div>
+            {% for subfield in form.bonded %}
+                <div class="col-md-1">{{ subfield }}</div>
+                <div class="col-md-2">{{ subfield.label }}</div>
+            {% endfor %}
+        </div>
+        <ul>
+            {% for error in form.bonded.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">{{ form.gender.label }}</div>
+            {% for subfield in form.gender %}
+                <div class="col-md-1">{{ subfield }}</div>
+                <div class="col-md-2">{{ subfield.label }}</div>
+            {% endfor %}
+        </div>
+        <ul>
+            {% for error in form.gender.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.age(class="form-control") }}
+        <ul>
+            {% for error in form.age.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">{{ form.health.label }}</div>
+            {% for subfield in form.health %}
+                <div class="col-md-1">{{ subfield }}</div>
+                <div class="col-md-2">{{ subfield.label }}</div>
+            {% endfor %}
+        </div>
+        <ul>
+            {% for error in form.health.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.health_details(class="form-control") }}
+        <ul>
+            {% for error in form.health_details.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.image(class="form-control", multiple="") }}
+        <ul>
+            {% for error in form.image.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.about_ferret(class="form-control") }}
+        <ul>
+            {% for error in form.about_ferret.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">{{ form.vaccinated.label }}</div>
+            {% for subfield in form.vaccinated %}
+                <div class="col-md-1">{{ subfield }}</div>
+                <div class="col-md-2">{{ subfield.label }}</div>
+            {% endfor %}
+        </div>
+        <ul>
+            {% for error in form.vaccinated.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.owner_email(class="form-control") }}
+        <ul>
+            {% for error in form.owner_email.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.owner_phone_no(class="form-control") }}
+        <ul>
+            {% for error in form.owner_phone_no.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-6">{{ form.surrender_in.label }}</div>
+            <div class="col-md-3">{{ form.surrender_in }}</div>
+        </div>
+        <ul>
+            {% for error in form.surrender_in.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ form.ferret_things(class="form-control") }}
+        <ul>
+            {% for error in form.ferret_things.errors %}
+                <li style="color: red;">{{ error }} </li>
+            {% endfor %}
+        </ul>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}
+    <script type="text/javascript">
+        $(function() {
+            $('input[name="health"]').on('click', function() {
+                if ($(this).val() == 'yes') {
+                    $('#health_details').show();
+                }
+                else {
+                    $('#health_details').hide();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

@@ -1,0 +1,43 @@
+{% extends 'admin_master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Admin Home{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" style="margin: 20px 20px 20px 80px; background-color: rgba(56,154,240,0.7); padding: 20px 65px; border-radius: 20px; height: 210px;">
+                <a href="/add_category">
+                    <img src="{{ url_for('static', filename='img/cat_ferret.png') }}" style="height: 125px;">
+                    <h5 style="text-align: center; margin-top: 10px; color: #fff;">Category Data</h5>
+                </a>
+            </div>
+            <div class="col-md-3" style="margin: 20px; background-color: rgba(56,154,240,0.7); padding: 20px 30px; border-radius: 20px; height: 210px;">
+                <a href="/manage_foster">
+                    <img src="{{ url_for('static', filename='img/foster_ferret.png') }}" style="height: 125px;">
+                    <h5 style="text-align: center; margin-top: 10px; color: #fff;">Foster Data</h5>
+                </a>
+            </div>
+            <div class="col-md-3" style="margin: 20px; background-color: rgba(56,154,240,0.7); padding: 20px 75px; border-radius: 20px; height: 210px;">
+                <a href="/manage_adopt">
+                    <img src="{{ url_for('static', filename='img/adopt_ferret.png') }}" style="height: 125px;">
+                    <h5 style="text-align: center; margin-top: 10px; color: #fff;">Adoption Data</h5>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

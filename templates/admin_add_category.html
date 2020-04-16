@@ -1,0 +1,141 @@
+{% extends 'admin_master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Manage Category{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Manage Category Data</h3>
+                        <button type="button" style="float: right;" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" style="margin: 5px;"></i> Add</button>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. #</th>
+                                        <th>Category Type</th>
+                                        <th>Image</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for d in ca %}
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ d.name }}</td>
+                                            <td><img class="d-block" style="height: 40px !important;" src="{{ url_for('static', filename='img/uploads/' + d.image_name )}}"></td>
+                                            <td>
+                                                <a href="/update_cat/{{ d.id }}" class="btn btn-info" data-toggle="modal" data-target="#updateModal{{ d.id }}">Update</a>
+                                                <a href="/delete_cat/{{ d.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade" id="updateModal{{ d.id }}" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Update Category Data</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action=/update_cat method="POST" enctype="multipart/form-data">
+                                                            {{ form.csrf_token }}
+
+                                                            <input class="form-control" name="id_cat" placeholder="enter category name" required="" type="text" value="{{ d.id }}" readonly>
+                                                            <ul></ul>
+
+                                                            <input class="form-control" name="category" placeholder="enter category name" required="" type="text" value="{{ d.name }}">
+                                                            <ul></ul>
+
+                                                            <input class="form-control" name="image" required="" type="file" value="">
+                                                            <ul></ul>
+
+                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add new category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/add_category" method="POST" enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+                        {{ form.name(class="form-control") }}
+                        <ul>
+                            {% for error in form.name.errors %}
+                                <li style="color: red;">{{ error }} </li>
+                            {% endfor %}
+                        </ul>
+
+                        {{ form.image(class="form-control") }}
+                        <ul>
+                            {% for error in form.image.errors %}
+                                <li style="color: red;">{{ error }} </li>
+                            {% endfor %}
+                        </ul>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}
+
+    <script>
+		$(document).ready(function() {
+	        $('.product-title').click(function(event) {
+				alert('Updating');
+			});
+		});
+	</script>
+
+{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

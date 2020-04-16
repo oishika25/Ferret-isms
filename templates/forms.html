@@ -1,0 +1,19 @@
+{% extends 'master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}WTForms{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <img src="{{ url_for('static', filename='img/uploads/'+form.image_name ) }}">
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

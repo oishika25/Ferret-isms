@@ -1,0 +1,142 @@
+{% extends 'admin_master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Manage Adopt{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Manage Adoption Data</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. #</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>About</th>
+                                        <th>Surrender-In</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for f in fos %}
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ f.ferret_name }}</td>
+                                            <td>{{ f.age }}</td>
+                                            <td>{{ f.gender }}</td>
+                                            <td>{{ f.email }}</td>
+                                            <td >{{ f.about }}</td>
+                                            <td>{{ f.surrender_in }}</td>
+                                            <td style="width: 26%;">
+                                                <a href="/update_adopt/{{ f.id }}" class="btn btn-info" data-toggle="modal" data-target="#updateModal{{ f.id }}">Confirm</a>
+                                                <a href="/delete_adopt/{{ f.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure To Delete?')">Delete</a>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade" id="updateModal{{ f.id }}" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Update Foster Data</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action=/update_adopt{{f.email}} method="POST" enctype="multipart/form-data">
+
+                                                            <input class="form-control" name="ferret_name" type="text" value="{{ f.ferret_name }}" readonly>
+                                                            <ul></ul>
+
+                                                            <input class="form-control" name="email" placeholder="enter email" required="" type="email" value="{{ f.email }}">
+                                                            <ul></ul>
+
+                                                            <input class="form-control" name="phone" placeholder="enter phone no" type="text" value="{{ f.phone }}">
+                                                            <ul></ul>
+
+                                                            <input class="form-control" name="things" placeholder="things come with ferret" required="" type="text" value="{{ f.things }}">
+                                                            <ul></ul>
+                                                            <label for="surrender_in">Surrender In (Days)</label>
+                                                            <select id="surrender_in" name="surrender_in">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                                <option value="13">13</option>
+                                                                <option value="14">14</option>
+                                                                <option value="15">15</option>
+                                                                <option value="16">16</option>
+                                                                <option value="17">17</option>
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30">30</option>
+                                                            </select>
+                                                            <ul></ul>
+
+                                                            <button type="submit" class="btn btn-primary">Update</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->

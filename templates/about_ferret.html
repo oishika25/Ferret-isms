@@ -1,0 +1,44 @@
+{% extends 'master_page.html' %}
+
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+{% block pagetitle %}Foster Details{% endblock %}
+<!--            -------------------------       TITLE SECTION      -------------------------            -->
+
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+{% block stylingsection %}{% endblock %}
+<!--            -------------------------       STYLE SHEET SECTION      -------------------------            -->
+
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+{% block bodycontent %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-dark" style="text-align: center;">
+                    <b style="font-weight: 500px; font-size: 36px;">TYPES OF FERRETS</b>
+                </div>
+            </div>
+            {% for d in data %}
+                <div class="col-md-4">
+                    <img class="d-block w-100" style="height: 200px !important;" src="{{ url_for('static', filename='img/uploads/' + d.image_name )}}" alt="First slide">
+                    <div class="alert alert-inverse" style="padding: 10px; background: #333; text-align: center;">
+                        <h4 style="color: #fff;">{{ d.name }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+<!--            -------------------------       BODY SECTION      -------------------------            -->
+
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
+{% block javascriptsection %}
+    <script>
+		$(document).ready(function() {
+	        $('button').click(function(event) {
+				window.open('confirm_adopt?v='+this.id,'_self');
+			});
+		});
+	</script>
+{% endblock %}
+<!--            -------------------------       JAVASCRIPT SECTION      -------------------------            -->
